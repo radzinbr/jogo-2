@@ -10,8 +10,10 @@ var move = key_right - key_left
 
 hvel = move * spd 
 if key_left or key_right {
-	situaçao = "andando"
-}
+	situacao = "andando"
+}else {
+	situacao = "parado"
+	}
 
 vvel = vvel + global.gravidade
  
@@ -23,7 +25,7 @@ if place_meeting(x + hvel,y,Obj_bloco){
 while (!place_meeting(x+sign(hvel),y,Obj_bloco)){
 	x = x+ sign(hvel)
 }
-	 hvel = 0
+
 }
 x= x + hvel
 if place_meeting(x,y+vvel,Obj_bloco){
@@ -39,4 +41,8 @@ y = y + vvel
 #endregion 
 
 #region animaçao 
+situacoes = ds_map_create();
+ds_map_add(situacoes, "andando", spr_personagem_andando);
+ds_map_add(situacoes, "parado", spr_personagem_parado);
+sprite_index = ds_map_find_value(situacoes, situacao);
 #endregion

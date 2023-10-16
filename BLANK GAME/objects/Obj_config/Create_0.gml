@@ -1,0 +1,1 @@
+global.gravidade = 1
